@@ -1,4 +1,4 @@
-package bandaAlbuns;
+package br.edu.ifrs.bandaalbuns.dominio;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -20,10 +20,14 @@ public class Integrante {
     @JoinColumn(name = "banda_id")
     private Banda banda;
 	
-	public Integrante(Long id, String nome, String instrumento) {
+	public Integrante() {
+	}
+	
+	public Integrante(Long id, String nome, String instrumento, Banda banda) {
 		this.id = id;
 		this.nome = nome;
 		this.instrumento = instrumento;
+		this.banda = banda;
 	}
 
 	public Long getId() {
