@@ -3,9 +3,9 @@ package br.edu.ifrs.bandaalbuns.dominio;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.GeneratedValue;
@@ -21,30 +21,22 @@ public class Album {
 	private int ano_lancamento;
 	
 	@ManyToOne
-	@JoinColumn(name = "banda_id")
 	private Banda banda;
 	
-	@OneToMany(mappedBy = "album")
+	@OneToMany(mappedBy = "album", cascade = CascadeType.REMOVE)
 	private List<Musica> musicas = new ArrayList<>();
 	
 	public Album() {
 	}
 	
-	public Album(Long id, String titulo, int ano_lancamento, Banda banda) {
-		this.id = id;
+	public Album(String titulo, int ano_lancamento) {
 		this.titulo = titulo;
 		this.ano_lancamento = ano_lancamento;
-		this.banda = banda;
 	}
 	
 	public Long getId() {
 		return id;
 	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getTitulo() {
 		return titulo;
 	}
@@ -54,9 +46,18 @@ public class Album {
 	public int getAno_lancamento() {
 		return ano_lancamento;
 	}
+	
 	public void setAno_lancamento(int ano_lancamento) {
 		this.ano_lancamento = ano_lancamento;
 	}
 	
+	public void setBanda(Banda banda) {
+		this.banda = banda;
+	}
 	
+	public void addMusica(Musica musica) {
+		this.musicas.add(musica);
+		musica.setAlbum(this);
+	}
+
 }

@@ -2,7 +2,6 @@ package br.edu.ifrs.bandaalbuns.dominio;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,25 +16,18 @@ public class Musica {
 	private int duracao;
 	
 	@ManyToOne
-    @JoinColumn(name = "album_id")
     private Album album;
 	
 	public Musica() {
 	}
 	
-	public Musica(Long id, String titulo, int duracao, Album album) {
-		this.id = id;
+	public Musica(String titulo, int duracao) {
 		this.titulo = titulo;
 		this.duracao = duracao;
-		this.album = album;
 	}
 
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getTitulo() {
@@ -52,6 +44,15 @@ public class Musica {
 
 	public void setDuracao(int duracao) {
 		this.duracao = duracao;
+	}
+	
+	public void setAlbum(Album album) {
+		this.album = album;
+	}
+
+	@Override
+	public String toString() {
+		return "Musica [id=" + id + ", titulo=" + titulo + ", duracao=" + duracao + ", album=" + album + "]";
 	}
 	
 	

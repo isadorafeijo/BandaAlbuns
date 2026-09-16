@@ -10,7 +10,7 @@ import jakarta.persistence.Persistence;
 public class BandaDAOJPA implements BandaDAO {
 	
 	private EntityManagerFactory emf = 
-			Persistence.createEntityManagerFactory("banda-albuns-pu");
+			Persistence.createEntityManagerFactory("bandaAlbuns-pu");
 	
 	public void salvar(Banda banda) {
 		EntityManager em = emf.createEntityManager();

@@ -27,8 +27,7 @@ public class Banda {
 	public Banda() {
 	}
 	
-	public Banda(Long id, String nome, String genero) {
-		this.id = id;
+	public Banda(String nome, String genero) {
 		this.nome = nome;
 		this.genero = genero;
 	}
@@ -57,5 +56,17 @@ public class Banda {
 		this.genero = genero;
 	}
 	
+	public List<Album> getAlbuns() {
+		return albuns;
+	}
 	
+	public void addAlbum(Album album) {
+		this.albuns.add(album);
+		album.setBanda(this);
+	}
+	
+	public void addIntegrante(Integrante integrante) {
+		this.integrantes.add(integrante);
+		integrante.setBanda(this);
+	}
 }
